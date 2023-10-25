@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="blue.png">
+    <link rel="stylesheet" href="tanggies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <title>form temopppp trial lavda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Merriweather', serif;
+            text-decoration: none;
+
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+
+            scroll-padding:
+                var(--scroll-padding, 5rem)
+        }
+
+        header {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 200px;
+            transition: 0.5s ease;
+
+        }
+
+
+        header .brand img {
+            max-width: 350px;
+            height: 150px;
+            margin-left: -15px;
+
+
+        }
+
+
+        header .navigation {
+            position: relative;
+        }
+
+
+        header .navigation .navigation-items a {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease-in;
+            font-size: 25px;
+            margin-left: 60px;
+
+        }
+
+        header .navigation .navigation-items a:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            background: #009FBD;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            transition: 0.3s ease;
+
+        }
+
+        header .navigation .navigation-items a:hover:before {
+            width: 100%;
+            color: #009FBD;
+
+        }
+
+
+        section {
+            padding: 100px 200px;
+        }
+
+
+        .home {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        .home:before {
+            z-index: 777;
+            content: '';
+            position: absolute;
+            background: rgba(251, 3, 3, 0.034);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .home .content {
+            z-index: 888;
+            color: #fff;
+            width: 80%;
+            margin-top: 50px;
+            display: none;
+            font-size: 25px;
+            line-height: 40rem;
+        }
+
+        .home .content.active {
+            display: block;
+        }
+
+        .home .content h1 {
+            font-size: 1.8em;
+            font-weight: 900;
+            margin-top: -15rem;
+            width: 130%;
+            letter-spacing: 1px;
+            line-height: 60px;
+            margin-bottom: -10rem;
+        }
+
+        .home .content h1 span {
+            font-size: 1.1em;
+            font-weight: 800;
+            padding-bottom: 35rem;
+
+        }
+
+        .home .content p {
+            margin-bottom: -200rem;
+            font-size: 1em;
+            width: 130%;
+
+        }
+
+
+        .home .media-icons {
+            z-index: 888;
+            position: absolute;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.5s ease;
+        }
+
+        .home .media-icons a {
+            color: white;
+            font-size: 1.6em;
+            transition: 0.3s ease;
+        }
+
+        .home .media-icons a:not(:last-child) {
+            margin-bottom: 20px;
+
+        }
+
+        .home .media-icons a:hover {
+            transform: scale(1.3);
+            color: #009FBD;
+        }
+
+        .home img {
+            z-index: 000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+        }
+
+        .slider-navigation {
+            z-index: 888;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(80px);
+            margin-bottom: -20rem;
+        }
+
+        .slider-navigation .nav-btn {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+            transition: 0.3s ease;
+        }
+
+        .slider-navigation .nav-btn.active {
+            background: #009FBD;
+        }
+
+        .slider-navigation .nav-btn:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .slider-navigation .nav-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .img-slide {
+            position: absolute;
+            width: 100%;
+            clip-path: circle(0% at 0 50%);
+        }
+
+        .img-slide.active {
+            clip-path: circle(150% at 0 50%);
+            transition: 2s ease;
+            transition-property: clip-path;
+        }
+
+        .wrapper {
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+            background-image: url('leaf3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 2rem;
+        }
+
+        .wrapper h1 {
+            font-size: 45px;
+            margin: auto;
+            color: #222;
+            text-align: center;
+
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .row .image-section {
+            width: 50%;
+            float: left;
+        }
+
+        .row .contents {
+            width: 50%;
+            float: right;
+            
+        }
+
+
+
+
+        .image-section img {
+            width: 500px;
+            height: 300px;
+
+        }
+
+
+
+        .contents p {
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        @media screen and (max-width: 600px) {
+            /* Styles for smaller screens */
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .wrapper .contents, .image-section {
+                width: auto;
+            }
+
+            .wrapper .row{
+                display: block;
+            }
+        }
+            
+
+         
+
+        .review {
+            background-image: url('https://media.istockphoto.com/id/1139678803/vector/horizontal-vector-illustration-of-an-empty-sky-blue-coloured-grungy-textured-background.jpg?s=612x612&w=0&k=20&c=tFTrwphz8pXtrmJGrEFBAnk9anQmRPHp3C8a3kQql7M=');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            max-height: 135%;
+        }
+
+        .review .review-slider {
+            padding: 1rem;
+            width: 100%;
+            margin-top: -3rem;
+            margin-bottom: 10rem;
+            height: 88vh;
+            width: 110%;
+            margin-left: -2.5rem;
+
+        }
+
+        .review .review-slider .box {
+            border: 0px solid lightblue;
+            border-radius: 2.5rem;
+            background-color: #fff;
+            text-align: center;
+            padding-top: 2rem;
+            box-shadow: 10px 20px 50px rgba(0, 159, 189, 0.5);
+            transition: .2s linear;
+            padding-bottom: 2rem;
+            padding-left: -5rem;
+            padding-right: 1.5rem;
+            margin-bottom: 2rem;
+
+
+
+        }
+
+        .review .review-slider .box:hover {
+            box-shadow: 1px 1px 10px 4px lightblue;
+
+        }
+
+        .review .review-slider .box img {
+            height: 10rem;
+            width: 10rem;
+            border-radius: 50%;
+        }
+
+        .heading {
+            padding-bottom: 6rem;
+            padding-top: -20rem;
+            margin-top: -2rem;
+            color: black;
+            font-size: 2.5rem;
+            text-align: center
+        }
+
+        .heading span {
+            color: black;
+        }
+
+        .review .review-slider .box p {
+            padding: 0.4rem 1rem;
+            line-height: 1.5;
+            color: black;
+            font-size: 1rem;
+        }
+
+        .review .review-slider .box h3 {
+            padding-bottom: 1rem 0;
+            color: black;
+            font-size: 1.3rem;
+
+        }
+
+        .review .review-slider .box .stars i {
+            color: gold;
+            font-size: 1.1rem;
+            padding-top: 1rem;
+
+        }
+
+
+
+
+
+        footer {
+            width: 100%;
+            background: linear-gradient(to right, #E1F6FF, #96DCF0, #85D0C6);
+            color: black;
+            padding: 30px 0;
+            border-top-left-radius: 125px;
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 0;
+
+        }
+
+        .rows {
+            width: 85%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex-basis: calc(25% - 20px);
+            padding: 5px;
+            font-size: 1.1rem;
+            line-height: 1.4rem;
+            font-weight: 500;
+            margin-top: 10rem;
+
+        }
+
+        .col a {
+            color: black;
+        }
+
+        .col a:hover {
+            color: #009FBD;
+        }
+
+
+
+        .logo {
+            width: 75%;
+            margin-top: -10rem;
+        }
+
+        .col h3 {
+            width: fit-content;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 1.2rem;
+
+            font-weight: 900;
+        }
+
+        .email-id {
+            width: fit-content;
+            border-bottom: 1px solid #222;
+            margin: 10px 0;
+        }
+
+        ul li {
+            list-style: none;
+            margin-bottom: 12px;
+
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: black;
+
+        }
+
+        hr {
+            width: 90%;
+            border: 0;
+            border-bottom: 1px solid #222;
+            margin: 20px auto;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .underline {
+            width: 100%;
+            height: 5px;
+            background: #009FBD;
+            border-radius: 3px;
+            position: absolute;
+            top: 25px;
+            left: 0;
+            overflow: hidden;
+
+        }
+
+        .underline span {
+            width: 15px;
+            height: 100%;
+            background: #fff;
+            border-radius: 3px;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            animation: moving 2s linear infinite;
+
+        }
+
+        @media(max-width: 1040px) {
+            header {
+                padding: 12px 20px;
+            }
+
+            section {
+                padding: 100px 20px;
+            }
+
+            .home .media-icons {
+                right: 15px;
+                font-size: 0.7em;
+                top: 20rem;
+
+            }
+
+            header .navigation {
+                display: none;
+            }
+
+            header .navigation.active {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(1, 1, 1, 0.5);
+                margin-top: -3rem;
+            }
+
+            header .navigation .navigation-items a {
+                color: #222;
+                font-size: 1.2em;
+                margin-left: -10rem;
+                margin: 20px;
+            }
+
+            header .navigation .navigation-items a:before {
+                background: #009FBD;
+                height: 5px;
+
+            }
+
+            header .navigation .navigation-items {
+                background: #fff;
+                width: 500px;
+                max-width: 500px;
+                margin: 10px;
+                padding: 20px;
+                display: flex;
+                font-size: 1.3rem;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 10px;
+                box-shadow: 0 5px 25px rgb(1 1 1/20%);
+            }
+
+            .menu-btn {
+                background: url('menu.png')no-repeat;
+                background-size: 30px;
+                background-position: center;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                transition: 0.3s ease;
+            }
+
+            .menu-btn.active {
+                z-index: 999;
+                background: url('close.png')no-repeat;
+                background-size: 25px;
+                background-position: center;
+                transition: 0.3s ease;
+            }
+
+
+        }
+
+        @media(max-width: 560px) {
+            .home .content h1 {
+                font-size: 1.4em;
+                line-height: 40px;
+                width: 130%;
+
+            }
+
+            .home .content p {
+                font-size: 0.8em;
+                width: 125%;
+                line-height: 1em;
+                margin-top: 18rem;
+
+            }
+
+            header .brand image {
+                width: 200px;
+                padding-left: -10rem;
+            }
+        }
+
+        @keyframes moving {
+            0% {
+                left: -20px;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+
+        <a href="" class="brand"><img src="blue1.png" alt=""></a>
+        <div class="menu-btn">
+
+            <div class="navigation">
+                <div class="navigation-items">
+                    <a href="index.html">Home</a>
+                    <a href="#wrapper">About</a>
+                    <a href="book1.html">Reservations</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="home">
+        <img class="img-slide active" src="_edit_1398(2).png">
+        <img class="img-slide" src="_edit_1432.png">
+        <img class="img-slide" src="_edit_1465.png">
+
+        <div class="content active">
+            <h1 align="center">"You've gotta be a bit<strong>
+                    <font color=#009FBD>TANGY</font>
+                </strong> at times to make it through!"</h1>
+        </div>
+        <div class="content">
+            <h1> Nested in the <font color=#009FBD>Hidden Gem</font> of<br><span>SOUTH GOA</span></h1>
+            <p><strong>
+                    <font color=#009FBD>“Tanggies”</font>
+                </strong> captures what we are all about and what our restaurant believes in.</p>
+        </div>
+        <div class="content">
+            <h1> Explore Our<br><span>
+                    <font color=#009FBD>TANGINESS</font>!
+                </span></h1>
+            <p> Get ready to expand your <font color=#009FBD>palette</font>, as we introduce you to new<font
+                    color=#009FBD> flavors!</font>
+            </p>
+        </div>
+
+        <div class="media-icons">
+            <a href="https://www.facebook.com/tanggiesgoa?mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/tanggiesgoa?igshid=MzRlODBiNWFlZA=="><i class="fab fa-instagram"></i></a>
+            <a
+                href="https://www.tripadvisor.in/Restaurant_Review-g775971-d3864497-Reviews-Tanggies_Restaurant-Cavelossim_South_Goa_District_Goa.html?m=19905"><i
+                    class="fab fa-tripadvisor"></i></a>
+
+        </div>
+        <div class="slider-navigation">
+            <div class="nav-btn active"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+
+        </div>
+
+    </section>
+
+    <div class="wrapper" id="wrapper">
+        <h1>About <font color=#009FBD>Tanggies</font>
+        </h1>
+        <div class="row">
+            <div class="image-section">
+                <img src="_MG_1467.JPG">
+            </div>
+            <div class="contents">
+
+                <p>Settled in <i>South Goa</i>, overlooking the confluence of the <i>Arabian Sea</i> and the <i>Sal
+                        River</i>, Cavelossim harbors a few of the prettiest sights in Goa.<br> With the gorgeous
+                    <i>white sands</i> shimmering in the sun and the great <i>waves</i> crashing against the golden
+                    shores, it is a beautiful sight to witness. The calming <i>hillocks</i> in the distance, and the
+                    views of the <i>sunset</i> add to its peaceful and relaxed charm.
+                    Our restaurant nests itself in this magical and hidden gem of South Goa.
+                    <i><b>“Tanggies”</b></i> perfectly captures what we are all about and what our restaurant
+                    believes in. No one can survive this life by just being <i>sweet</i>, you have to be a little
+                    <i>spicy</i> and a bit <i>tangy</i> at times as well to make it through! One must open their
+                    minds to new flavors and expand their palette. We also have a love for this flavor being
+                    surrounded by beautiful <i>palms</i> and <i>mango trees</i>. The mangoes itself can be an
+                    inspiration with their <i>tangy</i> flavor when eaten raw! We are thrilled by that extra
+                    excitement the flavor brings with it, and we hope to offer that to all those who visit us. You
+                    need that certain je ne sais quoi, and that's what <i><b>Tanggies</b></i> hopes to deliver!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="review" id="" review>
+        <h1 class="heading">Customer <span>Reviews</span></h1>
+
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper">
+                <div class="box">
+                    <img src="reviewS.png">
+                    <p>"The restaurant is great overall.. the staff was also friendly but the prices are surely the
+                        higher side I would say but not that high.. the food and the ambiance was amazing and the
+                        service was also fast .. they had a very big bar counter and a live music also ( live music
+                        only available in specific days)"</p>
+                    <h3> Shubh B</h3>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="reviewM.png">
+                    <p>"Been there on 30th Sep evening. Celebrated My Nephews 21st Birthday. We were 50 people .
+                        Amazing place for small parties. Great Ambiance. Good food . Snacks were Amazing. Service
+                        was outstanding. Will definitely visit again"</p>
+                    <h3> Mervyn D</h3>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="reviewM.png">
+                    <p>"Great place for good delicious meal. Opp Novotel, Cavelossim beach. Good setup, spacious and
+                        set apart seating. Excellent service, Excellent tasty food. Hyson Rodriguez served with a
+                        smile and wonderful hospitality.
+                        "</p>
+                    <h3>Madan Dedhia</h3>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="reviewM.png">
+                    <p>"A well located quaint restaurant with alert staff. Not to miss their Pomfret masala fish,
+                        Mediterranean steak, stuffed mushrooms, cheese naan. The choice of cocktails too are very
+                        refreshing. Worth a second visit."</p>
+                    <h3>Melvin Pereira</h3>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="reviewJ.png">
+                    <p>"Visited for their Sangria Sunday Brunch and had a blast! Loved the fun atmosphere, their
+                        chilled-out open air ambience and the great live music that morning! In terms of food, the
+                        tacos, fried prawns and hara bara kebabs were noteworthy."</p>
+                    <h3>Jade Dsa</h3>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="rows">
+            <div class="col">
+                <img src="blue1.png" class="logo">
+                <p><b>Business Hours:</b></p>
+                <p>09:00 am - 11:00 pm</p><br>
+                <p><b>Kitchen closing-time:</b></p>
+                <p>09:00 am - 10:30 pm</p><br>
+
+            </div>
+            <div class="col">
+                <h3>Address <div class="underline"><span></span></div>
+                </h3>
+                <p>Opposite Novotel Goa Dona Sylvia Resort Hotel,</p>
+                <p> Cavelossim, Goa - 403731, India</p><br></br>
+                <p class="email-id"><b><a
+                            href=mailto:"info@tanggiesgoa.com?cc=info@tanggiesgoa.com">info@tanggiesgoa.com</a></b></p>
+                <h4>+918806296994</h4>
+                <h4>+919822384178</h4>
+            </div>
+            <div class="col">
+                <h3>Quick Links <div class="underline"><span></span></div>
+                </h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#wrapper">About Us</a></li>
+                    <li><a href="book1.html">Reservation</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+        <p class="copyright">&copy;<b> Tanggies</b> @ 2023 - All Rights Reserved</p>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="tanggies.js"></script>
+
+
+
+
+
+    <script>
+        const menuBtn = document.querySelector(".menu-btn");
+        const navigation = document.querySelector(".navigation");
+
+        menuBtn.addEventListener("click", () => {
+            menuBtn.classList.toggle("active");
+            navigation.classList.toggle("active");
+        })
+
+        const btns = document.querySelectorAll(".nav-btn");
+        const slides = document.querySelectorAll(".img-slide");
+        const contents = document.querySelectorAll(".content");
+
+        var sliderNav = function (manual) {
+            btns.forEach((btn) => {
+                btn.classList.remove("active");
+            });
+            slides.forEach((slide) => {
+                slide.classList.remove("active");
+            });
+            contents.forEach((content) => {
+                content.classList.remove("active");
+            });
+
+            btns[manual].classList.add("active");
+            slides[manual].classList.add("active");
+            contents[manual].classList.add("active");
+        }
+
+        btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                sliderNav(i)
+            });
+        });
+
+
+        var swiper = new Swiper(".review-slider", {
+            grabCursor: true,
+            loop: true,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 7500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1020: {
+                    slidesPerView: 3,
+                },
+            },
+
+        });
+
+
+
+        const navigationHeight = navigation.offsetHeight;
+
+        document.documentElement.style.setProperty(
+            "--scroll-padding", navigationHeight + "px"
+        );
+    </script>
+</body>
+
+</html>
